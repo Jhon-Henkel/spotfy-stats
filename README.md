@@ -1,1 +1,1 @@
-# spotfy-stats
+# spotify-stats
