@@ -7,8 +7,8 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/folder/Inbox'
   },
   {
-    path: '/folder/:id',
-    component: () => import ('../views/FolderPage.vue')
+    path: '/sincronizar-conta',
+    component: () => import ('../views/syncAccount/SyncAccount.vue')
   }
 ]
 
