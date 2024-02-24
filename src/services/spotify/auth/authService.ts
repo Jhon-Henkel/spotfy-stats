@@ -1,3 +1,5 @@
+import {SpotifyAuthStore} from "@/services/spotify/auth/stores/authStore";
+
 export default class SpotifyAuthService {
     private clientId: string|undefined = process.env.VITE_SPOTIFY_CLIENT_ID;
     private redirectUrl: string = process.env.VITE_SPOTIFY_REDIRECT_URI || '';
@@ -5,6 +7,7 @@ export default class SpotifyAuthService {
     private spotifyToken: string = btoa(`${this.clientId}:${this.clientSecret}`);
     private scope: string = 'streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state';
     private spotifyBaseUri: string = 'https://accounts.spotify.com';
+    private authStore = SpotifyAuthStore();
 
     public async requestAndSavedToken(code: string): Promise<boolean> {
         const authParams = {
@@ -26,8 +29,8 @@ export default class SpotifyAuthService {
             if (data.error) {
               return false;
             }
-            // todo salvar o data no store
-            console.log(data);
+            this.authStore.setAccessToken(data.access_token);
+            this.authStore.setRefreshToken(data.refresh_token);
             return true;
         });
     }
