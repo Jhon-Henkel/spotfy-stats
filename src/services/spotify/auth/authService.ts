@@ -11,7 +11,7 @@ export default class SpotifyAuthService {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
-                Authorization: "Basic " + this.spotifyToken,
+                Authorization: `Basic ${this.spotifyToken}`,
             },
             body: new URLSearchParams({
                 grant_type: "authorization_code",
@@ -26,6 +26,28 @@ export default class SpotifyAuthService {
             if (data.error) {
               return false;
             }
+            // todo salvar o data no store
+            console.log(data);
+            return true;
+        });
+    }
+
+    public async requestAndSavedRefreshToken(refreshToken: string): Promise<boolean> {
+        const refreshParams = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                Authorization: `Basic ${this.spotifyToken}`,
+            },
+            body: new URLSearchParams({
+                grant_type: "refresh_token",
+                refresh_token: refreshToken,
+                client_id: this.clientId ?? '',
+            }),
+        }
+        return fetch(`${this.spotifyBaseUri}/api/token`, refreshParams).then(
+            (res) => res.json()
+        ).then((data) => {
             // todo salvar o data no store
             console.log(data);
             return true;
