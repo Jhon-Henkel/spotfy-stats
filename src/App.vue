@@ -1,7 +1,5 @@
 <template>
-    <!-- todo se não tiver conectado, deve redirecionar para a tela de conexão -->
     <!-- todo alterar o favicon -->
-    <!-- todo alterar o nome na guia do navegador -->
     <!-- todo background no tema do Spotify -->
     <ion-app class="main-content">
         <ion-content>
@@ -15,6 +13,7 @@
             </suspense>
         </ion-content>
     </ion-app>
+    <!-- todo criar footer -->
 </template>
 
 <script setup lang="ts">
