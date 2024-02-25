@@ -1,4 +1,4 @@
-import {SpotifyAuthStore} from "@/services/spotify/auth/stores/authStore";
+import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 import SpotifyTopItemsTimeRange from "@/services/spotify/topItems/topItemsTimeRangeEnum";
 import {SpotifyTopItemsStore} from "@/services/spotify/topItems/topItemsStore";
 

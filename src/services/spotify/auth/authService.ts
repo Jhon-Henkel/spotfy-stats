@@ -1,4 +1,4 @@
-import {SpotifyAuthStore} from "@/services/spotify/auth/stores/authStore";
+import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 
 export default class SpotifyAuthService {
     private clientId: string|undefined = process.env.VITE_SPOTIFY_CLIENT_ID;

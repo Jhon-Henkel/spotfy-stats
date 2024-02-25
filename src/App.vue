@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import {IonApp, IonContent} from '@ionic/vue';
 import {onMounted, ref} from "vue";
-import {SpotifyAuthStore} from "@/services/spotify/auth/stores/authStore";
+import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 import router from "@/router";
 
 onMounted(() => {

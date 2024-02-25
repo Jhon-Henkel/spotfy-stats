@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {IonRow, IonIcon, IonText, IonCol} from "@ionic/vue";
-import { SpotifyAuthStore } from "@/services/spotify/auth/stores/authStore";
+import { SpotifyAuthStore } from "@/services/spotify/auth/authStore";
 import {ref} from "vue";
 
 const store = SpotifyAuthStore()
