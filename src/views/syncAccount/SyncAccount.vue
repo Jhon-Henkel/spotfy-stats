@@ -17,7 +17,7 @@ if (error) {
 }
 
 if (state) {
-    if (code && spotifyService.validateState(state)) {
+    if (code && spotifyService.isValidateState(state)) {
         requestToken(code)
     }
 }

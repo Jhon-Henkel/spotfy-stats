@@ -58,15 +58,12 @@ export default class SpotifyAuthService {
     }
 
     public getUrlRequestCode(): string {
-        // todo gerar um state dinâmico talvez tenha que ser gerado no store
         return `${this.spotifyBaseUri}/authorize?client_id=${this.clientId}&response_type=code` +
-        `&redirect_uri=${this.redirectUrl}&scope=${this.scope}&state=34fFs29kd09`
+        `&redirect_uri=${this.redirectUrl}&scope=${this.scope}&state=${this.authStore.state}`
     }
 
-    public validateState(state: string): boolean {
-        // todo validar o state
-        console.log(state);
-        return true;
+    public isValidateState(state: string): boolean {
+        return state === this.authStore.state;
     }
 
     public removeToken(): void {
