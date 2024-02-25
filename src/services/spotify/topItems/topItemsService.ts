@@ -3,7 +3,7 @@ import SpotifyTopItemsTimeRange from "@/services/spotify/topItems/topItemsTimeRa
 import {SpotifyTopItemsStore} from "@/services/spotify/topItems/topItemsStore";
 
 export default class SpotifyTopItemsService {
-    private spotifyBaseUri: string = 'https://api.spotify.com/v1';
+    private spotifyBaseUri: string = process.env.VITE_SPOTIFY_API_URL ?? '';
     private authStore = SpotifyAuthStore();
     private topItemsStore = SpotifyTopItemsStore();
     private requestParams = {
