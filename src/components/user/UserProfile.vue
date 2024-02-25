@@ -24,6 +24,7 @@ export default {
             }
         }
 
+
         const store = SpotifyAuthStore()
         const isSync: boolean = !!ref(store.accessToken).value
         if (isSync) {
@@ -32,8 +33,11 @@ export default {
             })
         }
 
+        const profileImage = user?.images[0]?.url ?? 'https://ionicframework.com/docs/img/demos/avatar.svg'
+
         return {
-            user: user
+            user: user,
+            profileImage: profileImage
         }
     },
     methods: {
@@ -47,7 +51,7 @@ export default {
 <template>
     <ion-chip @click="openUserProfile">
         <ion-avatar>
-            <img alt="profile picture" :src="user.images[0].url" />
+            <img alt="profile picture" :src="profileImage" />
         </ion-avatar>
         <ion-label>{{ user.display_name }}</ion-label>
     </ion-chip>

@@ -17,6 +17,7 @@ export default class SpotifyUserService {
         return await fetch(`${this.spotifyBaseUri}/me`, this.requestParams).then(
             (result) => result.json()
         ).then((data) => {
+            // todo salvar em um novo objeto com somente os dados necessários
             return data
         });
     }

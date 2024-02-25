@@ -19,6 +19,7 @@ export default class SpotifyTopItemsService {
         return await fetch(url, this.requestParams).then(
             (result) => result.json()
         ).then((data) => {
+            // todo salvar em um novo objeto com somente os dados necessários
             return data.items
         });
     }
@@ -58,6 +59,7 @@ export default class SpotifyTopItemsService {
         return await fetch(url, this.requestParams).then(
             (result) => result.json()
         ).then((data) => {
+            // todo salvar em um novo objeto com somente os dados necessários
             return data.items
         });
     }
