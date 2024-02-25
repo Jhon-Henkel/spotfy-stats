@@ -68,4 +68,8 @@ export default class SpotifyAuthService {
         console.log(state);
         return true;
     }
+
+    public removeToken(): void {
+        this.authStore.removeToken();
+    }
 }
