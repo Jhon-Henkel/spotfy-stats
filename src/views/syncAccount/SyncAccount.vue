@@ -2,6 +2,7 @@
 import {IonRow, IonButton, IonCol, IonGrid, IonIcon, alertController} from "@ionic/vue";
 import SpotifyAuthService from "@/services/spotify/auth/authService";
 import SyncStatus from "@/components/status/SyncStatus.vue";
+import {SpotifyTopItemsStore} from "@/services/spotify/topItems/topItemsStore";
 import {useRouter} from "vue-router";
 
 const spotifyService = new SpotifyAuthService()
@@ -42,6 +43,7 @@ async function requestToken(code: string) {
 
 async function removeStore() {
     spotifyService.removeToken()
+    SpotifyTopItemsStore().removeTopItems()
     await router.push({ name: 'Home' })
 }
 

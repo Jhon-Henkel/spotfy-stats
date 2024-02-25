@@ -25,7 +25,7 @@ import router from "@/router";
 
 onMounted(() => {
     const store = SpotifyAuthStore()
-    const isSync: boolean = !!ref(store.accessToken)
+    const isSync: boolean = !!ref(store.accessToken).value
     if (! isSync) {
         router.push({ name: 'SyncAccount' })
     }

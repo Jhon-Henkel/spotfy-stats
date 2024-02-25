@@ -1,5 +1,6 @@
 export default class StorageService {
     public oneHourMs: number = 3600000
+    public oneDayMs: number = 86400000
 
     public getStorageItem(key: string): any {
         const itemInStorage = localStorage.getItem(key)

@@ -1,13 +1,12 @@
 <script lang="ts">
 import SpotifyTopItemsService from "@/services/spotify/topItems/topItemsService";
-import SpotifyTopItemsTimeRange from "@/services/spotify/topItems/topItemsTimeRangeEnum";
 
 export default {
     async setup() {
-        const stats = new SpotifyTopItemsService()
-        const topTracksAllTime = await stats.getTrackStats(SpotifyTopItemsTimeRange.LONG_TERM)
-        const topTracksLastSixMonths = await stats.getTrackStats(SpotifyTopItemsTimeRange.MEDIUM_TERM)
-        const topTracksLastFourWeeks = await stats.getTrackStats(SpotifyTopItemsTimeRange.SHORT_TERM)
+        const topItems = new SpotifyTopItemsService()
+        const topTracksAllTime = await topItems.getTopItemsAllTime()
+        const topTracksLastSixMonths = await topItems.getTopItemsLastSixMonths()
+        const topTracksLastFourWeeks = await topItems.getTopItemsLastFourWeeks()
         return {
             topTracksAllTime: topTracksAllTime,
             topTracksLastSixMonths: topTracksLastSixMonths,
