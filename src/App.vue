@@ -5,13 +5,20 @@
     <!-- todo background no tema do Spotify -->
     <ion-app class="main-content">
         <ion-content>
-            <ion-router-outlet></ion-router-outlet>
+            <suspense>
+                <template #default>
+                    <router-view></router-view>
+                </template>
+                <template #fallback>
+                    <h1>Carregando...</h1>
+                </template>
+            </suspense>
         </ion-content>
     </ion-app>
 </template>
 
 <script setup lang="ts">
-import {IonApp, IonRouterOutlet, IonContent} from '@ionic/vue';
+import {IonApp, IonContent} from '@ionic/vue';
 import {ref} from "vue";
 import {SpotifyAuthStore} from "@/services/spotify/auth/stores/authStore";
 import router from "@/router";

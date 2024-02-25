@@ -5,7 +5,7 @@ export default class SpotifyAuthService {
     private redirectUrl: string = process.env.VITE_SPOTIFY_REDIRECT_URI || '';
     private clientSecret: string|undefined = process.env.VITE_SPOTIFY_CLIENT_SECRET;
     private spotifyToken: string = btoa(`${this.clientId}:${this.clientSecret}`);
-    private scope: string = 'streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state';
+    private scope: string = 'user-top-read';
     private spotifyBaseUri: string = 'https://accounts.spotify.com';
     private authStore = SpotifyAuthStore();
 

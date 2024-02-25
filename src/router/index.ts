@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import SyncAccount from "@/views/syncAccount/SyncAccount.vue";
-import Home from "@/views/Home.vue";
+import HomeView from "@/views/HomeView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: HomeView
     },
     {
         path: '/sincronizar-conta',
