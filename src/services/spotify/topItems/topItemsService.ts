@@ -23,33 +23,33 @@ export default class SpotifyTopItemsService {
         });
     }
 
-    public async getTopItemsAllTime(): Promise<any> {
+    public async getTopTracksAllTime(): Promise<any> {
         let tracks = this.topItemsStore.topTracksAllTime
         if (tracks) {
             return tracks
         }
         tracks = await this.getTrackStats(SpotifyTopItemsTimeRange.LONG_TERM)
-        this.topItemsStore.setTopItemsAllTime(tracks)
+        this.topItemsStore.setTopTracksAllTime(tracks)
         return tracks
     }
 
-    public async getTopItemsLastSixMonths(): Promise<any> {
+    public async getTopTracksLastSixMonths(): Promise<any> {
         let tracks = this.topItemsStore.topTracksSixMonths
         if (tracks) {
             return tracks
         }
         tracks = await this.getTrackStats(SpotifyTopItemsTimeRange.MEDIUM_TERM)
-        this.topItemsStore.setTopItemsSixMonths(tracks)
+        this.topItemsStore.setTopTracksSixMonths(tracks)
         return tracks
     }
 
-    public async getTopItemsLastFourWeeks(): Promise<any> {
+    public async getTopTracksLastFourWeeks(): Promise<any> {
         let tracks = this.topItemsStore.topTracksFourWeeks
         if (tracks) {
             return tracks
         }
         tracks = await this.getTrackStats(SpotifyTopItemsTimeRange.SHORT_TERM)
-        this.topItemsStore.setTopItemsFourWeeks(tracks)
+        this.topItemsStore.setTopTracksFourWeeks(tracks)
         return tracks
     }
 
@@ -60,5 +60,35 @@ export default class SpotifyTopItemsService {
         ).then((data) => {
             return data.items
         });
+    }
+
+    public async getTopArtistsAllTime(): Promise<any> {
+        let artists = this.topItemsStore.topArtistsAllTime
+        if (artists) {
+            return artists
+        }
+        artists = await this.getArtistStats(SpotifyTopItemsTimeRange.LONG_TERM)
+        this.topItemsStore.setTopArtistsAllTime(artists)
+        return artists
+    }
+
+    public async getTopArtistsLastSixMonths(): Promise<any> {
+        let artists = this.topItemsStore.topArtistsSixMonths
+        if (artists) {
+            return artists
+        }
+        artists = await this.getArtistStats(SpotifyTopItemsTimeRange.MEDIUM_TERM)
+        this.topItemsStore.setTopArtistsSixMonths(artists)
+        return artists
+    }
+
+    public async getTopArtistsLastFourWeeks(): Promise<any> {
+        let artists = this.topItemsStore.topArtistsFourWeeks
+        if (artists) {
+            return artists
+        }
+        artists = await this.getArtistStats(SpotifyTopItemsTimeRange.SHORT_TERM)
+        this.topItemsStore.setTopArtistsFourWeeks(artists)
+        return artists
     }
 }

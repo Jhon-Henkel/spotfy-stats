@@ -4,9 +4,9 @@ import SpotifyTopItemsService from "@/services/spotify/topItems/topItemsService"
 export default {
     async setup() {
         const topItems = new SpotifyTopItemsService()
-        const topTracksAllTime = await topItems.getTopItemsAllTime()
-        const topTracksLastSixMonths = await topItems.getTopItemsLastSixMonths()
-        const topTracksLastFourWeeks = await topItems.getTopItemsLastFourWeeks()
+        const topTracksAllTime = await topItems.getTopTracksAllTime()
+        const topTracksLastSixMonths = await topItems.getTopTracksLastSixMonths()
+        const topTracksLastFourWeeks = await topItems.getTopTracksLastFourWeeks()
         return {
             topTracksAllTime: topTracksAllTime,
             topTracksLastSixMonths: topTracksLastSixMonths,
@@ -32,7 +32,3 @@ export default {
         </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>

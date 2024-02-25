@@ -15,5 +15,15 @@ import router from "@/router";
             </ion-col>
             <ion-col size="2" />
         </ion-row>
+        <ion-row>
+            <ion-col size="2" />
+            <ion-col size="8">
+                <ion-button expand="block" color="success" @click="router.push({ name: 'TopArtists' })">
+                    <ion-icon name="mic-outline" class="ion-padding-end" />
+                    Top Artistas
+                </ion-button>
+            </ion-col>
+            <ion-col size="2" />
+        </ion-row>
     </ion-grid>
 </template>
