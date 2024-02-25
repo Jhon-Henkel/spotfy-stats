@@ -1,28 +1,19 @@
-<script lang="ts">
-import SpotifyTopItemsService from "@/services/spotify/topItems/topItemsService";
-
-export default {
-    async setup() {
-        const stats = new SpotifyTopItemsService()
-        const tracksStats = await stats.getTrackStats()
-        const artistStats = await stats.getArtistStats()
-        return {
-            tracksStats: tracksStats,
-            artistStats: artistStats
-        }
-    }
-}
+<script setup lang="ts">
+import {IonButton, IonCol, IonIcon, IonRow, IonGrid} from "@ionic/vue";
+import router from "@/router";
 </script>
 
 <template>
-    <div>
-        <h1>Top Faixas</h1>
-        <div v-for="(track, index) in tracksStats" :key="index" style="color: #ffffff">
-            Faixa {{ (index + 1) }}: {{ track.name }}
-        </div>
-        <h1>Top Artistas</h1>
-        <div v-for="(artist, index) in artistStats" :key="index" style="color: #ffffff">
-            Artista {{ (index + 1) }}: {{ artist.name }}
-        </div>
-    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="2" />
+            <ion-col size="8">
+                <ion-button expand="block" color="success" @click="router.push({ name: 'TopTracks' })">
+                    <ion-icon name="musical-notes-outline" class="ion-padding-end" />
+                    Top Musicas
+                </ion-button>
+            </ion-col>
+            <ion-col size="2" />
+        </ion-row>
+    </ion-grid>
 </template>

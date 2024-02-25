@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import SyncAccount from "@/views/syncAccount/SyncAccount.vue";
 import HomeView from "@/views/HomeView.vue";
+import TopTracksView from "@/views/topItems/TopTracksView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -13,6 +14,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/sincronizar-conta',
         name: 'SyncAccount',
         component: SyncAccount
+    },
+    {
+        path: '/top-musicas',
+        name: 'TopTracks',
+        component: TopTracksView
     }
 ]
 
