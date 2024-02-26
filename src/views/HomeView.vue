@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {IonButton, IonCol, IonIcon, IonRow, IonGrid} from "@ionic/vue";
 import router from "@/router";
-import AppHeader from "@/components/header/AppHeader.vue";
+import AppHomeHeader from "@/components/header/AppHomeHeader.vue";
 </script>
 
 <template>
-    <app-header></app-header>
+    <app-home-header></app-home-header>
     <ion-grid>
         <ion-row>
             <ion-col size="1" />
