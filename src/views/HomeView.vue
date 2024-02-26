@@ -27,5 +27,15 @@ import AppHomeHeader from "@/components/header/AppHomeHeader.vue";
             </ion-col>
             <ion-col size="1" />
         </ion-row>
+        <ion-row>
+            <ion-col size="1" />
+            <ion-col size="10">
+                <ion-button expand="block" color="success" @click="router.push({ name: 'SyncAccount' })">
+                    <ion-icon name="sync-outline" class="ion-padding-end" />
+                    Sincronizar Conta
+                </ion-button>
+            </ion-col>
+            <ion-col size="1" />
+        </ion-row>
     </ion-grid>
 </template>
