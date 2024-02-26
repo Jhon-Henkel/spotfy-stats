@@ -4,7 +4,7 @@ import SpotifyAuthService from "@/services/spotify/auth/authService";
 import {SpotifyTopItemsStore} from "@/services/spotify/topItems/topItemsStore";
 import {useRouter} from "vue-router";
 import {SpotifyUserStore} from "@/services/spotify/user/userStore";
-import AppHeader from "@/components/header/AppHeader.vue";
+import AppHomeHeader from "@/components/header/AppHomeHeader.vue";
 
 const spotifyService = new SpotifyAuthService()
 const spotifyAuthUrl = spotifyService.getUrlRequestCode()
@@ -58,8 +58,18 @@ function removeItemsFromLocalStorage() {
 
 <template>
     <!-- todo alinhar conteúdo verticalmente -->
-    <app-header />
+    <app-home-header />
     <ion-grid class="ion-align-items-center">
+        <ion-row>
+            <ion-col size="1" />
+            <ion-col size="10">
+                <ion-button expand="block" color="success" @click="router.push({name: 'Home'})">
+                    <ion-icon name="home-outline" class="ion-padding-end" />
+                    Ínicio
+                </ion-button>
+            </ion-col>
+            <ion-col size="1" />
+        </ion-row>
         <ion-row>
             <ion-col size="1" />
             <ion-col size="10">
