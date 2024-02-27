@@ -3,6 +3,7 @@
     <!-- todo background no tema do Spotify -->
     <ion-app class="main-content">
         <ion-content>
+            <app-home-header />
             <suspense>
                 <template #default>
                     <router-view></router-view>
@@ -20,6 +21,7 @@
 import {IonApp, IonContent} from '@ionic/vue';
 import router from "@/router";
 import SpotifyAuthService from "@/services/spotify/auth/authService";
+import AppHomeHeader from "@/components/header/AppHomeHeader.vue";
 
 const service = new SpotifyAuthService()
 

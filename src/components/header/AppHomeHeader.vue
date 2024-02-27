@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {IonCol, IonGrid, IonRow, IonToolbar, IonHeader, IonTitle} from "@ionic/vue";
+import {IonCol, IonGrid, IonRow, IonToolbar, IonHeader, IonTitle, IonChip, IonAvatar, IonLabel} from "@ionic/vue";
 import UserProfile from "@/components/user/UserProfile.vue";
 
+const url: string = 'https://ionicframework.com/docs/img/demos/avatar.svg'
 </script>
 
 <template>
@@ -9,19 +10,35 @@ import UserProfile from "@/components/user/UserProfile.vue";
         <ion-toolbar>
             <ion-grid>
                 <ion-row class="ion-align-items-center">
-                    <ion-col size="1" />
-                    <ion-col size="3" class="ion-justify-content-start" />
-                    <ion-col size="4" class="ion-text-center">
-                        <ion-title color="success">
-                            Spotify Status
+                    <ion-col class="ion-text-start">
+                        <ion-title color="success" class="padding">
+                            <strong>SpotStatus</strong>
                         </ion-title>
                     </ion-col>
-                    <ion-col size="3" class="ion-text-end">
-                        <user-profile />
+                    <ion-col class="ion-text-end">
+                        <suspense>
+                            <template #default>
+                                <user-profile />
+                            </template>
+                            <template #fallback>
+                                <ion-chip>
+                                    <ion-avatar>
+                                        <img alt="profile picture" :src="url" />
+                                    </ion-avatar>
+                                    <ion-label>Usuário</ion-label>
+                                </ion-chip>
+                            </template>
+                        </suspense>
                     </ion-col>
-                    <ion-col size="1" />
                 </ion-row>
             </ion-grid>
         </ion-toolbar>
     </ion-header>
 </template>
+
+<style scoped>
+    .padding {
+        padding-inline-start : 0 !important;
+        -webkit-padding-start: 0 !important;
+    }
+</style>

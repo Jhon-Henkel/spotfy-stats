@@ -1,6 +1,8 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
 import StorageService from "@/services/storage/StorageService";
+import SpotifyTopArtistEntity from "@/services/spotify/topItems/TopArtistEntity";
+import SpotifyTopTrackEntity from "@/services/spotify/topItems/TopTrackEntity";
 
 export const SpotifyTopItemsStore = defineStore('SpotifyTopItemsStore', () => {
     const storageService = new StorageService()
@@ -42,6 +44,30 @@ export const SpotifyTopItemsStore = defineStore('SpotifyTopItemsStore', () => {
         topArtistsFourWeeks.value = artists
     }
 
+    function getTopArtists(): {
+        allTime: Array<SpotifyTopArtistEntity>,
+        lastSixMonths: Array<SpotifyTopArtistEntity>,
+        lastFourWeeks: Array<SpotifyTopArtistEntity>
+    } {
+        return {
+            allTime: topArtistsAllTime.value,
+            lastSixMonths: topArtistsSixMonths.value,
+            lastFourWeeks: topArtistsFourWeeks.value
+        }
+    }
+
+    function getTopTracks(): {
+        allTime: Array<SpotifyTopTrackEntity>,
+        lastSixMonths: Array<SpotifyTopTrackEntity>,
+        lastFourWeeks: Array<SpotifyTopTrackEntity>
+    } {
+        return {
+            allTime: topTracksAllTime.value,
+            lastSixMonths: topTracksSixMonths.value,
+            lastFourWeeks: topTracksFourWeeks.value
+        }
+    }
+
     function removeTopItems(): void {
         storageService.removeStorageItems(
             'top_tracks_all_time',
@@ -67,6 +93,8 @@ export const SpotifyTopItemsStore = defineStore('SpotifyTopItemsStore', () => {
         setTopArtistsAllTime,
         setTopArtistsSixMonths,
         setTopArtistsFourWeeks,
+        getTopArtists,
+        getTopTracks,
         removeTopItems
     }
 })
