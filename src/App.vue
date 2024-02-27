@@ -18,17 +18,14 @@
 
 <script setup lang="ts">
 import {IonApp, IonContent} from '@ionic/vue';
-import {onMounted, ref} from "vue";
-import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 import router from "@/router";
+import SpotifyAuthService from "@/services/spotify/auth/authService";
 
-onMounted(() => {
-    const store = SpotifyAuthStore()
-    const isSync: boolean = !!ref(store.accessToken).value
-    if (! isSync) {
-        router.push({ name: 'SyncAccount' })
-    }
-})
+const service = new SpotifyAuthService()
+
+if (service.mustRequestSpotifyLogin()) {
+    router.push({ name: 'SyncAccount' })
+}
 </script>
 
 <style scoped>

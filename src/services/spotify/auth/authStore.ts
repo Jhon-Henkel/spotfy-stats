@@ -31,8 +31,8 @@ export const SpotifyAuthStore = defineStore('SpotifyAuthStore', () => {
 
     function removeToken(): void {
         storageService.removeStorageItems('access_token', 'refresh_token', 'state')
-        accessToken.value = ''
-        refreshToken.value = ''
+        accessToken.value = null
+        refreshToken.value = null
     }
 
     return { accessToken, refreshToken, state, setRefreshToken, setAccessToken, removeToken }

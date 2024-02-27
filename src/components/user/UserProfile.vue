@@ -1,9 +1,8 @@
 <script lang="ts">
 import {IonChip, IonAvatar, IonLabel} from "@ionic/vue";
 import SpotifyUserService from "@/services/spotify/user/userService";
-import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
-import {ref} from "vue";
 import SpotifyUserEntity from "@/services/spotify/user/userEntity";
+import SpotifyAuthService from "@/services/spotify/auth/authService";
 
 export default {
     components: {
@@ -13,12 +12,11 @@ export default {
     },
     async setup() {
         const userServices = new SpotifyUserService()
+        const authService = new SpotifyAuthService()
+
         let user = new SpotifyUserEntity(null, null, null)
 
-
-        const store = SpotifyAuthStore()
-        const isSync: boolean = !!ref(store.accessToken).value
-        if (isSync) {
+        if (! authService.mustRequestSpotifyLogin()) {
             user = await userServices.getUserProfile().then((response) => {
                 return response
             })

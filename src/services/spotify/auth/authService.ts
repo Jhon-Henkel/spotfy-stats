@@ -1,4 +1,6 @@
 import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
+import {SpotifyUserStore} from "@/services/spotify/user/userStore";
+import {ref} from "vue";
 
 export default class SpotifyAuthService {
     private clientId: string|undefined = process.env.VITE_SPOTIFY_CLIENT_ID;
@@ -68,5 +70,11 @@ export default class SpotifyAuthService {
 
     public removeToken(): void {
         this.authStore.removeToken();
+    }
+
+    public mustRequestSpotifyLogin(): boolean {
+        const user = ref(SpotifyUserStore().userProfile)
+        const accessToken = ref(this.authStore.accessToken)
+        return user.value === null && accessToken.value === null;
     }
 }
