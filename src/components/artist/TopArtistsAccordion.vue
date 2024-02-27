@@ -79,6 +79,7 @@ export default {
                                 <ion-row>
                                     <ion-col>
                                         <ion-text>
+                                            <!-- todo formatar número -->
                                             Seguidores: {{ artist?.followers?.total ?? 'Desconhecido' }}
                                         </ion-text>
                                     </ion-col>

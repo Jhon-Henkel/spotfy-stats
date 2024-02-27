@@ -1,11 +1,12 @@
 <script lang="ts">
 
 import {IonIcon, IonAccordion, IonItem, IonLabel, IonItemDivider, IonGrid, IonRow, IonCol, IonBadge, IonText} from "@ionic/vue";
+import SpotifyTopTrackEntity from "@/services/spotify/topItems/TopTrackEntity";
 
 export default {
     props: {
         tracks: {
-            type: Array,
+            type: Array<SpotifyTopTrackEntity>,
             required: true
         },
         position: {
@@ -18,10 +19,7 @@ export default {
         }
     },
     setup() {
-        const defaultImage = 'https://ionicframework.com/docs/img/demos/card-media.png'
-        return {
-            defaultImage
-        }
+        return {}
     },
     components: {
         IonIcon,
@@ -53,7 +51,7 @@ export default {
                             </ion-badge>
                         </ion-col>
                         <ion-col size="1">
-                            <img :src="track?.album?.images[0]?.url ?? defaultImage"
+                            <img :src="track.albumImageUrl"
                                  alt="album cover">
                         </ion-col>
                         <ion-col size="9">
@@ -61,21 +59,21 @@ export default {
                                 <ion-row>
                                     <ion-col>
                                         <ion-label class="track-name">
-                                            {{ track?.name ?? 'Desconhecido' }}
+                                            {{ track?.name }}
                                         </ion-label>
                                     </ion-col>
                                 </ion-row>
                                 <ion-row>
                                     <ion-col>
                                         <ion-text>
-                                            {{ track?.artists[0]?.name ?? 'Desconhecido' }}
+                                            {{ track.artist }}
                                         </ion-text>
                                     </ion-col>
                                 </ion-row>
                             </ion-grid>
                         </ion-col>
                         <ion-col size="1" class="position-col">
-                            <a :href="track?.external_urls?.spotify ?? 'https://open.spotify.com/'"
+                            <a :href="track.externalUrl"
                                target="_blank"
                                class="play-icon">
                                 <ion-icon name="play-circle-outline" color="success"/>

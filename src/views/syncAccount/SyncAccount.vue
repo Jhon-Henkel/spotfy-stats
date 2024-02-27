@@ -73,6 +73,7 @@ function removeItemsFromLocalStorage() {
         <ion-row>
             <ion-col size="1" />
             <ion-col size="10">
+                <!-- todo fazer o get de artistas e faixas ao sincronizar conta -->
                 <ion-button expand="block" color="success" :href="spotifyAuthUrl">
                     <ion-icon name="lock-open-outline" class="ion-padding-end" />
                     Sincronizar Conta
