@@ -1,10 +1,11 @@
 export default class SpotifyTopTrackEntity {
+    public id: string = ''
     public albumImageUrl: string = 'https://ionicframework.com/docs/img/demos/card-media.png'
     public name: string = 'Desconhecido'
     public artist: string = 'Desconhecido'
     public externalUrl: string = 'https://open.spotify.com'
 
-    constructor(albumImageUrl: null|string, name: null|string, artist: null|string, externalUrl: null|string) {
+    constructor(albumImageUrl: null|string, name: null|string, artist: null|string, externalUrl: null|string, id: string) {
         if (albumImageUrl !== null) {
             this.albumImageUrl = albumImageUrl
         }
@@ -17,5 +18,6 @@ export default class SpotifyTopTrackEntity {
         if (externalUrl !== null) {
             this.externalUrl = externalUrl
         }
+        this.id = id
     }
 }

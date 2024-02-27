@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import SyncAccount from "@/views/syncAccount/SyncAccount.vue";
 import HomeView from "@/views/HomeView.vue";
 import ArtistDetailsView from "@/views/artist/ArtistDetailsView.vue";
+import TrackDetailsView from "@/views/track/TrackDetailsView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/artista/:id',
         name: 'ArtistDetails',
         component: ArtistDetailsView
+    },
+    {
+        path: '/musica/:id',
+        name: 'TrackDetails',
+        component: TrackDetailsView
     }
 ]
 

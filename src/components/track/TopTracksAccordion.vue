@@ -1,9 +1,15 @@
 <script lang="ts">
 
-import {IonIcon, IonAccordion, IonItem, IonLabel, IonItemDivider, IonGrid, IonRow, IonCol, IonBadge, IonText} from "@ionic/vue";
+import {IonAccordion, IonItem, IonLabel, IonItemDivider, IonGrid, IonRow, IonCol, IonBadge, IonText} from "@ionic/vue";
 import SpotifyTopTrackEntity from "@/services/spotify/topItems/TopTrackEntity";
+import router from "@/router";
 
 export default {
+    methods: {
+        router() {
+            return router
+        }
+    },
     props: {
         tracks: {
             type: Array<SpotifyTopTrackEntity>,
@@ -22,7 +28,6 @@ export default {
         return {}
     },
     components: {
-        IonIcon,
         IonAccordion,
         IonItem,
         IonLabel,
@@ -44,17 +49,16 @@ export default {
         <div class="ion-padding" slot="content">
             <ion-item-divider v-for="(track, index) in tracks" :key="index">
                 <ion-grid>
-                    <ion-row class="ion-text-start">
-                        <ion-col size="1" class="position-col">
+                    <ion-row class="ion-text-start" @click="router().push({name: 'TrackDetails', params: {id: track.id}})">
+                        <ion-col size="2" class="position-col">
                             <ion-badge color="success" class="position-badge">
-                                {{ (index + 1) }}ª
+                                # {{ (index + 1) }}
                             </ion-badge>
                         </ion-col>
-                        <ion-col size="1">
-                            <img :src="track.albumImageUrl"
-                                 alt="album cover">
+                        <ion-col size="2" class="position-col">
+                            <img :src="track.albumImageUrl" alt="album cover" class="album-image">
                         </ion-col>
-                        <ion-col size="9">
+                        <ion-col size="8">
                             <ion-grid>
                                 <ion-row>
                                     <ion-col>
@@ -71,13 +75,6 @@ export default {
                                     </ion-col>
                                 </ion-row>
                             </ion-grid>
-                        </ion-col>
-                        <ion-col size="1" class="position-col">
-                            <a :href="track.externalUrl"
-                               target="_blank"
-                               class="play-icon">
-                                <ion-icon name="play-circle-outline" color="success"/>
-                            </a>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -101,8 +98,13 @@ export default {
     font-size: 1.2em;
     font-weight: 700;
     color: #ffffff;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-.play-icon {
-    font-size: 3em;
+.album-image {
+    min-width: 50px;
+    min-height: 50px;
 }
 </style>

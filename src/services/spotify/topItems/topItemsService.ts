@@ -27,7 +27,8 @@ export default class SpotifyTopItemsService {
                     item?.album?.images[0]?.url ?? null,
                     item.name,
                     item?.artists[0]?.name ?? null,
-                    item?.external_urls?.spotify ?? null
+                    item?.external_urls?.spotify ?? null,
+                    item.id
                 )
                 tracks.push(track)
             })
