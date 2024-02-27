@@ -2,6 +2,7 @@ import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 import SpotifyTopItemsTimeRange from "@/services/spotify/topItems/topItemsTimeRangeEnum";
 import {SpotifyTopItemsStore} from "@/services/spotify/topItems/topItemsStore";
 import SpotifyTopTrackEntity from "@/services/spotify/topItems/TopTrackEntity";
+import SpotifyTopArtistEntity from "@/services/spotify/topItems/TopArtistEntity";
 
 export default class SpotifyTopItemsService {
     private spotifyBaseUri: string = process.env.VITE_SPOTIFY_API_URL ?? '';
@@ -64,17 +65,26 @@ export default class SpotifyTopItemsService {
         return tracks
     }
 
-    private async getArtistStats(timeRange: SpotifyTopItemsTimeRange): Promise<any> {
+    private async getArtistStats(timeRange: SpotifyTopItemsTimeRange): Promise<Array<SpotifyTopArtistEntity>> {
         const url: string = `${this.spotifyBaseUri}/me/top/artists?time_range=${timeRange.toString()}&limit=10`
         return await fetch(url, this.requestParams).then(
             (result: Response) => result.json()
         ).then((data) => {
-            // todo salvar em um novo objeto com somente os dados necessários
-            return data.items
+            const artists: Array<SpotifyTopArtistEntity> = []
+            data.items.forEach((item: any) => {
+                const artist = new SpotifyTopArtistEntity(
+                    item?.images[0]?.url ?? null,
+                    item.name,
+                    item?.external_urls?.spotify ?? null,
+                    item.followers.total
+                )
+                artists.push(artist)
+            })
+            return artists
         });
     }
 
-    public async getTopArtistsAllTime(): Promise<any> {
+    public async getTopArtistsAllTime(): Promise<Array<SpotifyTopArtistEntity>> {
         let artists = this.topItemsStore.topArtistsAllTime
         if (artists) {
             return artists
@@ -84,7 +94,7 @@ export default class SpotifyTopItemsService {
         return artists
     }
 
-    public async getTopArtistsLastSixMonths(): Promise<any> {
+    public async getTopArtistsLastSixMonths(): Promise<Array<SpotifyTopArtistEntity>> {
         let artists = this.topItemsStore.topArtistsSixMonths
         if (artists) {
             return artists
@@ -94,7 +104,7 @@ export default class SpotifyTopItemsService {
         return artists
     }
 
-    public async getTopArtistsLastFourWeeks(): Promise<any> {
+    public async getTopArtistsLastFourWeeks(): Promise<Array<SpotifyTopArtistEntity>> {
         let artists = this.topItemsStore.topArtistsFourWeeks
         if (artists) {
             return artists
