@@ -76,7 +76,8 @@ export default class SpotifyTopItemsService {
                     item?.images[0]?.url ?? null,
                     item.name,
                     item?.external_urls?.spotify ?? null,
-                    item.followers.total
+                    item.followers.total,
+                    item.id
                 )
                 artists.push(artist)
             })
