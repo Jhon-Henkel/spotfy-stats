@@ -7,7 +7,7 @@ export const SpotifyUserStore = defineStore('SpotifyUserStore', () => {
     const userProfile = ref(storageService.getStorageItem('user_profile'))
 
     function setUserProfile(user:any): void {
-        storageService.setStorageItem('user_profile', user, storageService.oneDayMs)
+        storageService.setStorageItem('user_profile', user, storageService.oneWeekMs)
         userProfile.value = user
     }
 

@@ -5,6 +5,8 @@ import {SpotifyTopItemsStore} from "@/services/spotify/topItems/topItemsStore";
 import {useRouter} from "vue-router";
 import {SpotifyUserStore} from "@/services/spotify/user/userStore";
 import AppHomeHeader from "@/components/header/AppHomeHeader.vue";
+import SpotifyUserService from "@/services/spotify/user/userService";
+import SpotifyTopItemsService from "@/services/spotify/topItems/topItemsService";
 
 const spotifyService = new SpotifyAuthService()
 const spotifyAuthUrl = spotifyService.getUrlRequestCode()
@@ -40,6 +42,7 @@ async function requestToken(code: string) {
         await showAlert()
     }
     removeItemsFromLocalStorage()
+    getAllDataAndPutOnLocalStorage()
     await router.push({ name: 'Home' })
 }
 
@@ -52,6 +55,17 @@ async function removeStore() {
 function removeItemsFromLocalStorage() {
     SpotifyTopItemsStore().removeTopItems()
     SpotifyUserStore().removeUserProfile()
+}
+
+function getAllDataAndPutOnLocalStorage() {
+    new SpotifyUserService().getUserProfile()
+    const topItensService = new SpotifyTopItemsService()
+    topItensService.getTopArtistsAllTime()
+    topItensService.getTopTracksAllTime()
+    topItensService.getTopArtistsLastSixMonths()
+    topItensService.getTopTracksLastSixMonths()
+    topItensService.getTopArtistsLastFourWeeks()
+    topItensService.getTopTracksLastFourWeeks()
 }
 
 </script>

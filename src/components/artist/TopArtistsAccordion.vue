@@ -76,7 +76,6 @@ export default {
                                 <ion-row>
                                     <ion-col>
                                         <ion-text>
-                                            <!-- todo formatar número -->
                                             Seguidores: {{ artist.followers.toLocaleString() }}
                                         </ion-text>
                                     </ion-col>
