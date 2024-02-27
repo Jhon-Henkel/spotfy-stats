@@ -1,13 +1,13 @@
 <script lang="ts">
 import SpotifyTopItemsService from "@/services/spotify/topItems/topItemsService";
-import TopTracksAcordeon from "@/components/track/TopTracksAcordeon.vue";
+import TopTracksAccordion from "@/components/track/TopTracksAccordion.vue";
 import AppPagesHeader from "@/components/header/AppPagesHeader.vue";
 import { IonAccordionGroup, IonCol, IonRow, IonGrid } from "@ionic/vue";
 
 export default {
     components: {
         AppPagesHeader,
-        TopTracksAcordeon,
+        TopTracksAccordion,
         IonAccordionGroup,
         IonCol,
         IonRow,
@@ -36,9 +36,9 @@ export default {
             <ion-col size="1" />
             <ion-col size="10" class="ion-text-center">
                 <ion-accordion-group expand="inset">
-                    <top-tracks-acordeon :tracks="topTracksAllTime" position="first" label="Desde o início" />
-                    <top-tracks-acordeon :tracks="topTracksLastSixMonths" position="second" label="Últimos 6 meses" />
-                    <top-tracks-acordeon :tracks="topTracksLastFourWeeks" position="third" label="Últimas 4 semanas" />
+                    <top-tracks-accordion :tracks="topTracksAllTime" position="first" label="Desde o início" />
+                    <top-tracks-accordion :tracks="topTracksLastSixMonths" position="second" label="Últimos 6 meses" />
+                    <top-tracks-accordion :tracks="topTracksLastFourWeeks" position="third" label="Últimas 4 semanas" />
                 </ion-accordion-group>
             </ion-col>
             <ion-col size="1" />
