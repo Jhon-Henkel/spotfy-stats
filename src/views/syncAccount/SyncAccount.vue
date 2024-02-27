@@ -87,10 +87,9 @@ function getAllDataAndPutOnLocalStorage() {
         <ion-row>
             <ion-col size="1" />
             <ion-col size="10">
-                <!-- todo fazer o get de artistas e faixas ao sincronizar conta -->
                 <ion-button expand="block" color="success" :href="spotifyAuthUrl">
                     <ion-icon name="lock-open-outline" class="ion-padding-end" />
-                    Sincronizar Conta
+                    Conectar Spotify
                 </ion-button>
             </ion-col>
             <ion-col size="1" />
@@ -100,7 +99,7 @@ function getAllDataAndPutOnLocalStorage() {
             <ion-col size="10">
                 <ion-button expand="block" color="danger" @click="removeStore()">
                     <ion-icon name="lock-closed-outline" class="ion-padding-end" />
-                    Dessincronizar Conta
+                    Desconectar Spotify
                 </ion-button>
             </ion-col>
             <ion-col size="1" />
