@@ -1,5 +1,6 @@
 import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 import {SpotifyUserStore} from "@/services/spotify/user/userStore";
+import SpotifyUserEntity from "@/services/spotify/user/userEntity";
 
 export default class SpotifyUserService {
     private spotifyBaseUri: string = process.env.VITE_SPOTIFY_API_URL ?? '';
@@ -13,16 +14,16 @@ export default class SpotifyUserService {
         },
     }
 
-    private async requestUserProfile(): Promise<any> {
+    private async requestUserProfile(): Promise<SpotifyUserEntity> {
         return await fetch(`${this.spotifyBaseUri}/me`, this.requestParams).then(
             (result) => result.json()
         ).then((data) => {
-            // todo salvar em um novo objeto com somente os dados necessários
-            return data
+            const image = data?.images[0]?.url ?? 'https://ionicframework.com/docs/img/demos/avatar.svg'
+            return new SpotifyUserEntity(data.display_name, image, data.external_urls.spotify)
         });
     }
 
-    public async getUserProfile(): Promise<any> {
+    public async getUserProfile(): Promise<SpotifyUserEntity> {
         let user = this.userStore.userProfile
         if (user) {
             return user

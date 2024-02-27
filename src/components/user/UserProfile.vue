@@ -3,6 +3,7 @@ import {IonChip, IonAvatar, IonLabel} from "@ionic/vue";
 import SpotifyUserService from "@/services/spotify/user/userService";
 import {SpotifyAuthStore} from "@/services/spotify/auth/authStore";
 import {ref} from "vue";
+import SpotifyUserEntity from "@/services/spotify/user/userEntity";
 
 export default {
     components: {
@@ -12,17 +13,7 @@ export default {
     },
     async setup() {
         const userServices = new SpotifyUserService()
-        let user = {
-            display_name: 'Usuário',
-            images: [
-                {
-                    url: 'https://ionicframework.com/docs/img/demos/avatar.svg'
-                }
-            ],
-            external_urls: {
-                spotify: 'https://open.spotify.com'
-            }
-        }
+        let user = new SpotifyUserEntity(null, null, null)
 
 
         const store = SpotifyAuthStore()
@@ -33,16 +24,13 @@ export default {
             })
         }
 
-        const profileImage = user?.images[0]?.url ?? 'https://ionicframework.com/docs/img/demos/avatar.svg'
-
         return {
             user: user,
-            profileImage: profileImage
         }
     },
     methods: {
         openUserProfile() {
-            window.open(this.user.external_urls.spotify, '_blank')
+            window.open(this.user.profileUrl, '_blank')
         }
     }
 }
@@ -51,8 +39,8 @@ export default {
 <template>
     <ion-chip @click="openUserProfile">
         <ion-avatar>
-            <img alt="profile picture" :src="profileImage" />
+            <img alt="profile picture" :src="user.image" />
         </ion-avatar>
-        <ion-label>{{ user.display_name }}</ion-label>
+        <ion-label>{{ user.name }}</ion-label>
     </ion-chip>
 </template>
