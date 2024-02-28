@@ -49,7 +49,8 @@ export default {
         <div class="ion-padding" slot="content">
             <ion-item-divider v-for="(track, index) in tracks" :key="index">
                 <ion-grid>
-                    <ion-row class="ion-text-start" @click="router().push({name: 'TrackDetails', params: {id: track.id}})">
+                    <ion-row class="ion-text-start content-list"
+                             @click="router().push({name: 'TrackDetails', params: {id: track.id}})">
                         <ion-col size="2" class="position-col">
                             <ion-badge color="success" class="position-badge">
                                 # {{ (index + 1) }}
@@ -106,5 +107,8 @@ export default {
 .album-image {
     min-width: 50px;
     min-height: 50px;
+}
+.content-list {
+    cursor: pointer;
 }
 </style>

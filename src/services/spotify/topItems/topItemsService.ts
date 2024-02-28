@@ -78,7 +78,8 @@ export default class SpotifyTopItemsService {
                     item.name,
                     item?.external_urls?.spotify ?? null,
                     item.followers.total,
-                    item.id
+                    item.id,
+                    item.popularity
                 )
                 artists.push(artist)
             })
@@ -114,5 +115,25 @@ export default class SpotifyTopItemsService {
         artists = await this.getArtistStats(SpotifyTopItemsTimeRange.SHORT_TERM)
         this.topItemsStore.setTopArtistsFourWeeks(artists)
         return artists
+    }
+
+    public getArtistById(id: string): SpotifyTopArtistEntity | null {
+        const allArtists = this.topItemsStore.getTopArtists()
+        const allTime = allArtists.allTime
+        const sixMonths = allArtists.lastSixMonths
+        const fourWeeks = allArtists.lastFourWeeks
+        let artist = allTime.find((artist) => artist.id === id)
+        if (artist) {
+            return artist
+        }
+        artist = sixMonths.find((artist) => artist.id === id)
+        if (artist) {
+            return artist
+        }
+        artist = fourWeeks.find((artist) => artist.id === id)
+        if (artist) {
+            return artist
+        }
+        return null
     }
 }

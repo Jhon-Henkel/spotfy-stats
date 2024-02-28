@@ -4,8 +4,16 @@ export default class SpotifyTopArtistEntity {
     public name: string = 'Desconhecido'
     public externalUrl: string = 'https://open.spotify.com'
     public followers: number = 0
+    public popularity: number = 0
 
-    constructor(imageUrl: null|string, name: null|string, externalUrl: null|string, followers: number, id: string) {
+    constructor(
+        imageUrl: null|string,
+        name: null|string,
+        externalUrl: null|string,
+        followers: number,
+        id: string,
+        popularity: number = 0
+    ) {
         if (imageUrl !== null) {
             this.imageUrl = imageUrl
         }
@@ -17,6 +25,9 @@ export default class SpotifyTopArtistEntity {
         }
         if (followers !== 0) {
             this.followers = followers
+        }
+        if (popularity !== 0) {
+            this.popularity = popularity
         }
         this.id = id
     }
