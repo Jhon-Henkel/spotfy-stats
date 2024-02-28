@@ -1,8 +1,6 @@
 <template>
-    <!-- todo alterar o favicon -->
-    <!-- todo background no tema do Spotify -->
     <ion-app class="main-content">
-        <ion-content>
+        <ion-content class="app-content ion-padding-bottom">
             <app-home-header />
             <suspense>
                 <template #default>
@@ -45,5 +43,9 @@ if (service.mustRequestSpotifyLogin()) {
 .footer-link {
     color: var(--ion-color-success);
     text-decoration: none;
+}
+.app-content {
+    --padding-bottom: 60px;
+    padding-bottom: 60px;
 }
 </style>

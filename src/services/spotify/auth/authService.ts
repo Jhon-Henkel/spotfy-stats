@@ -53,7 +53,6 @@ export default class SpotifyAuthService {
         return fetch(`${this.spotifyBaseUri}/api/token`, refreshParams).then(
             (res) => res.json()
         ).then((data) => {
-            // todo salvar o data no store
             console.log(data);
             return true;
         });

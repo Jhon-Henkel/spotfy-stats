@@ -85,7 +85,6 @@ const track: SpotifyTopTrackEntity|null = topItensService.getTrackById(id.toStri
                 </ion-row>
                 <ion-row v-if="track.previewUrl !== null">
                     <ion-col>
-                        <!-- todo imagem de fundo está preta e o player não ocupa 100% do preenchimento horizontal-->
                         <iframe :src="track?.previewUrl"
                                 height="80"
                                 class="iframe"
