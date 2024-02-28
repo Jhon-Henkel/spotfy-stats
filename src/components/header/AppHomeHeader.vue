@@ -12,7 +12,7 @@ const url: string = 'https://ionicframework.com/docs/img/demos/avatar.svg'
                 <ion-row class="ion-align-items-center">
                     <ion-col class="ion-text-start">
                         <ion-title color="success" class="padding">
-                            <strong>SpotStatus</strong>
+                            <strong>Music Status</strong>
                         </ion-title>
                     </ion-col>
                     <ion-col class="ion-text-end">

@@ -11,6 +11,7 @@ export default defineConfig(() => {
             legacy(),
         ],
         envDir: './src/environments/.env',
+        appType: 'spa',
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, './src'),
