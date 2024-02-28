@@ -28,7 +28,13 @@ export default class SpotifyTopItemsService {
                     item.name,
                     item?.artists[0]?.name ?? null,
                     item?.external_urls?.spotify ?? null,
-                    item.id
+                    item.id,
+                    item?.album?.name ?? null,
+                    item?.album?.external_urls?.spotify ?? null,
+                    item?.album?.release_date ?? null,
+                    item?.artists[0]?.external_urls?.spotify ?? null,
+                    item.popularity,
+                    item.preview_url
                 )
                 tracks.push(track)
             })
@@ -64,6 +70,26 @@ export default class SpotifyTopItemsService {
         tracks = await this.getTrackStats(SpotifyTopItemsTimeRange.SHORT_TERM)
         this.topItemsStore.setTopTracksFourWeeks(tracks)
         return tracks
+    }
+
+    public getTrackById(id: string): SpotifyTopTrackEntity | null {
+        const allTracks = this.topItemsStore.getTopTracks()
+        const allTime = allTracks.allTime
+        const sixMonths = allTracks.lastSixMonths
+        const fourWeeks = allTracks.lastFourWeeks
+        let track = allTime.find((track) => track.id === id)
+        if (track) {
+            return track
+        }
+        track = sixMonths.find((track) => track.id === id)
+        if (track) {
+            return track
+        }
+        track = fourWeeks.find((track) => track.id === id)
+        if (track) {
+            return track
+        }
+        return null
     }
 
     private async getArtistStats(timeRange: SpotifyTopItemsTimeRange): Promise<Array<SpotifyTopArtistEntity>> {

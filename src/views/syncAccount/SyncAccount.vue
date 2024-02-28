@@ -17,7 +17,7 @@ const state = urlParams.get('state') ?? null
 const router = useRouter();
 
 if (error) {
-    showAlert()
+    showErrorAlert()
 }
 
 if (state) {
@@ -26,7 +26,7 @@ if (state) {
     }
 }
 
-async function showAlert() {
+async function showErrorAlert() {
     const alert = await alertController.create({
         header: 'Erro ao sincronizar conta!',
         message: 'Tente fazer a sincronização novamente.',
@@ -36,10 +36,20 @@ async function showAlert() {
     await alert.present();
 }
 
+async function showRemovedAlert() {
+    const alert = await alertController.create({
+        header: 'Dados removidos!',
+        message: 'Faça o login novamente.',
+        buttons: ['Ok'],
+    });
+
+    await alert.present();
+}
+
 async function requestToken(code: string) {
     const response = await spotifyService.requestAndSavedToken(code)
     if (! response) {
-        await showAlert()
+        await showErrorAlert()
     }
     removeItemsFromLocalStorage()
     getAllDataAndPutOnLocalStorage()
@@ -49,7 +59,7 @@ async function requestToken(code: string) {
 async function removeStore() {
     spotifyService.removeToken()
     removeItemsFromLocalStorage()
-    await router.push({ name: 'Home' })
+    await showRemovedAlert()
 }
 
 function removeItemsFromLocalStorage() {
@@ -71,19 +81,7 @@ function getAllDataAndPutOnLocalStorage() {
 </script>
 
 <template>
-    <!-- todo alinhar conteúdo verticalmente -->
-    <app-home-header />
     <ion-grid class="ion-align-items-center">
-        <ion-row>
-            <ion-col size="1" />
-            <ion-col size="10">
-                <ion-button expand="block" color="success" @click="router.push({name: 'Home'})">
-                    <ion-icon name="home-outline" class="ion-padding-end" />
-                    Ínicio
-                </ion-button>
-            </ion-col>
-            <ion-col size="1" />
-        </ion-row>
         <ion-row>
             <ion-col size="1" />
             <ion-col size="10">
@@ -100,6 +98,15 @@ function getAllDataAndPutOnLocalStorage() {
                 <ion-button expand="block" color="danger" @click="removeStore()">
                     <ion-icon name="lock-closed-outline" class="ion-padding-end" />
                     Desconectar Spotify
+                </ion-button>
+            </ion-col>
+            <ion-col size="1" />
+        </ion-row>
+        <ion-row>
+            <ion-col size="1" />
+            <ion-col size="10">
+                <ion-button expand="block" color="success" @click="router.push({name: 'Home'})">
+                    Voltar
                 </ion-button>
             </ion-col>
             <ion-col size="1" />

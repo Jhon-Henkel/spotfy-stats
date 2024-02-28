@@ -3,6 +3,7 @@ import {IonChip, IonAvatar, IonLabel} from "@ionic/vue";
 import SpotifyUserService from "@/services/spotify/user/userService";
 import SpotifyUserEntity from "@/services/spotify/user/userEntity";
 import SpotifyAuthService from "@/services/spotify/auth/authService";
+import router from "@/router";
 
 export default {
     components: {
@@ -27,15 +28,15 @@ export default {
         }
     },
     methods: {
-        openUserProfile() {
-            window.open(this.user.profileUrl, '_blank')
-        }
+        router() {
+            return router
+        },
     }
 }
 </script>
 
 <template>
-    <ion-chip @click="openUserProfile">
+    <ion-chip @click="router().push({name: 'SyncAccount'})">
         <ion-avatar>
             <img alt="profile picture" :src="user.image" />
         </ion-avatar>

@@ -44,7 +44,7 @@ const artist: SpotifyTopArtistEntity|null = topItensService.getArtistById(id.toS
                     <ion-col>
                         <ion-text>
                             <ion-label color="success">
-                                <strong>{{ artist?.popularity }}/100 </strong>
+                                <strong>{{ artist?.popularity }} / 100 </strong>
                             </ion-label>
                             <ion-label>
                                 popularidade
